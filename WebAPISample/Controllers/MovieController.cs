@@ -22,11 +22,9 @@ namespace WebAPISample.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            // Retrieve all movies from db logic
-            //$.ajax({
-            //    Type: "GET",
-            //    url: "https://"
-            //})
+            //Retrieve all movies from db logic
+
+           
 
             return Ok(new string[] { "movie1 string", "movie2 string" });
         }
