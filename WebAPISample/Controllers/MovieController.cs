@@ -24,9 +24,7 @@ namespace WebAPISample.Controllers
         {
             //Retrieve all movies from db logic
 
-           
-
-            return Ok(new string[] { "movie1 string", "movie2 string" });
+            return Ok(_context.Movies);
         }
 
         // GET api/movie/5
@@ -35,23 +33,38 @@ namespace WebAPISample.Controllers
         {
             // Retrieve movie by id from db logic
             // return Ok(movie);
-            return Ok();
+
+            var movie = _context.Movies.Find(id);
+
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(movie);
         }
 
         // POST api/movie
         [HttpPost]
-        public IActionResult Post([FromBody]Movie value)
+        public IActionResult Post([FromBody] Movie value)
         {
             // Create movie in db logic
-            return Ok();
+            _context.Movies.Add(value);
+            _context.SaveChangesAsync();
+            return Ok(_context.Movies);
         }
 
         // PUT api/movie
-        [HttpPut]
-        public IActionResult Put([FromBody] Movie movie)
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Movie movieObj)
         {
             // Update movie in db logic
-            return Ok();
+            var movie = _context.Movies.Find(id);
+            movie.Title = movieObj.Title;
+            movie.Director = movieObj.Director;
+            movie.Genre = movieObj.Genre;
+            _context.SaveChangesAsync();
+            return Ok(_context.Movies);
         }
 
         // DELETE api/movie/5
@@ -59,7 +72,16 @@ namespace WebAPISample.Controllers
         public IActionResult Delete(int id)
         {
             // Delete movie from db logic
-            return Ok();
+            var movie = _context.Movies.Find(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            _context.Movies.Remove(movie);
+            _context.SaveChanges();
+
+            return Ok(_context.Movies);
         }
     }
 }
