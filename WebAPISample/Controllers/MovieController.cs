@@ -63,6 +63,7 @@ namespace WebAPISample.Controllers
             movie.Title = movieObj.Title;
             movie.Director = movieObj.Director;
             movie.Genre = movieObj.Genre;
+            _context.Movies.Update(movie);
             _context.SaveChangesAsync();
             return Ok(_context.Movies);
         }
