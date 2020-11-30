@@ -32,6 +32,8 @@ $(function(){
             $("#movieList").append(`<div>
             <div>Title: ${JSON.stringify(el.title)}</div>
             <div>Director: ${JSON.stringify(el.director)}</div>
+            <button type="button" onclick="putFunction()">Edit</button>
+            <button type="button" onclick="deleteFunction()">Delete</button>
             </div><br>`)
         })
     })
