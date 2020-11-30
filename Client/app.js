@@ -24,3 +24,16 @@
 
     $('#my-form').submit( processForm );
 })(jQuery);
+
+$(function(){ 
+    $.get("https://localhost:44325/api/movie", function(data){
+        console.log(data);
+        data.map(function(el){
+            $("#movieList").append(`<div>
+            <div>Title: ${JSON.stringify(el.title)}</div>
+            <div>Director: ${JSON.stringify(el.director)}</div>
+            </div><br>`)
+        })
+    })
+
+})
