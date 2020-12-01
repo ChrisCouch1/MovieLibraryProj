@@ -56,15 +56,14 @@ namespace WebAPISample.Controllers
 
         // PUT api/movie
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Movie movieObj)
+        public async Task<IActionResult> Put(int id, [FromBody] Movie movieObj)
         {
             // Update movie in db logic
             var movie = _context.Movies.Find(id);
             movie.Title = movieObj.Title;
             movie.Director = movieObj.Director;
             movie.Genre = movieObj.Genre;
-            _context.Movies.Update(movie);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return Ok(_context.Movies);
         }
 
