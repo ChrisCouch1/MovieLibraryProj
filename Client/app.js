@@ -72,5 +72,23 @@ function putFunction(id){
     );
     
 }
+function deleteFunction(id){
+    $.ajax({
+        url: `https://localhost:44325/api/movie/${id}`,
+        dataType: 'json',
+        type: 'delete',
+        contentType: 'application/json',
+        data: id,
+        success: function(id){
+            var x = $("#movieList").find(x => x.id === this.id);
+            $("#movieList").remove(x => x.id === this.id);              
+        },
+    
+        error: function( jqXhr, textStatus, errorThrown ){
+            console.log( errorThrown );
+        }
+    }
+    );
+}
 
     
