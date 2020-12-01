@@ -30,9 +30,9 @@ $(function(){
     $.get("https://localhost:44325/api/movie").then(function(data){
         data.map(function(el){            
             $("#movieList").append(`<div>
-            <div>Title:<div id="movieTitle${el.movieId}">${JSON.stringify(el.title)}</div></div>
-            <div>Director :<div id="movieDirector${el.movieId}">${JSON.stringify(el.director)}</div></div>
-            <div>Genre: <div id="movieGenre${el.movieId}">${JSON.stringify(el.genre)}</div></div>
+            <div>Title:&nbsp;<span id="movieTitle${el.movieId}">${JSON.stringify(el.title)}</span></div>
+            <div>Director:&nbsp;<span id="movieDirector${el.movieId}">${JSON.stringify(el.director)}</span></div>
+            <div>Genre:&nbsp;<span id="movieGenre${el.movieId}">${JSON.stringify(el.genre)}</span></div>
             <button type="button" onclick="putFunction(${el.movieId})">Edit</button>
             <button type="button" onclick="deleteFunction(${el.movieId})">Delete</button>
             </div><br>`)
