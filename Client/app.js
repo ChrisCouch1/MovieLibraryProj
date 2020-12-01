@@ -96,9 +96,7 @@ function putRequestFunction(id){
 
 function reloadPage(){
     location.reload();
-
-
-
+}
 
 function deleteFunction(id){
     $.ajax({
@@ -152,4 +150,3 @@ function deleteFunction(id){
     
 }
 
-    
