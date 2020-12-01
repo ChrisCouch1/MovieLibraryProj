@@ -90,7 +90,7 @@ function putRequestFunction(id){
                 console.log( errorThrown );
             }
         });
-
+    
      
 }
 
@@ -98,7 +98,30 @@ function reloadPage(){
     location.reload();
 }
 
+
 function deleteFunction(id){
+    $(function(){ 
+        pathToMovie = `https://localhost:44325/api/movie/${id}`
+        $.get(pathToMovie, function(data){
+            console.log(data);
+            document.getElementById("movieList").innerHTML = " ";
+            $("#movieList").append(`<div>
+                <div>Title: <span id="movieTitle${data.movieId}">${JSON.stringify(data.title)}</span></div>
+                <div>Director: <span id="movieDirector${data.movieId}">${JSON.stringify(data.director)}</span></div>
+                <div>Genre: <span id="movieGenre${data.movieId}">${JSON.stringify(data.genre)}</span</div>
+                <br>
+                <button type="button" onclick="deleteRequestFunction(${data.movieId})">Delete Movie</button>
+                <button type="button" onclick="reloadPage()">Refresh Movie List</button>
+            </div>`)
+        })
+    
+    })
+}
+
+
+
+
+function deleteRequestFunction(id){
     $.ajax({
         url: `https://localhost:44325/api/movie/${id}`,
         dataType: 'json',
@@ -113,9 +136,10 @@ function deleteFunction(id){
         error: function( jqXhr, textStatus, errorThrown ){
             console.log( errorThrown );
         }
-    }
-    );
+    });
 }
+
+
 
 
 
