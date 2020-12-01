@@ -73,4 +73,37 @@ function putFunction(id){
     
 }
 
+
+function deleteFunction(id){
+    let title=$("#my-title").val();
+    let director=$("#my-director").val();
+    let genre=$("#my-genre").val();
+
+    var dict = {
+        title:title,
+        director:director,
+        genre:genre,
+    };
+    console.log(title);
+    $.ajax({
+        url: `https://localhost:44325/api/movie/${id}`,
+        dataType: 'json',
+        type: 'Delete',
+        contentType: 'application/json',
+        data: JSON.stringify(dict),
+        success: function(dict){
+            var x = $("#movieList").remove(x => x.id === this.id);
+            x.director = dict.director;
+            x.title = dict.title;
+            x.genre = dict.genre;                
+        },
+    
+        error: function( jqXhr, textStatus, errorThrown ){
+            console.log( errorThrown );
+        }
+    }
+    );
+    
+}
+
     
