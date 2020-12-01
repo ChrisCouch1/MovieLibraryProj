@@ -42,6 +42,26 @@ $(function(){
 })
 
 function putFunction(id){
+    $(function(){ 
+        pathToMovie = `https://localhost:44325/api/movie/${id}`
+        $.get(pathToMovie, function(data){
+            console.log(data);
+            document.getElementById("movieList").innerHTML = " ";
+            $("#movieList").append(`<div>
+                <div>Title: <span id="movieTitle${data.movieId}">${JSON.stringify(data.title)}</span></div>
+                <div>Director: <span id="movieDirector${data.movieId}">${JSON.stringify(data.director)}</span></div>
+                <div>Genre: <span id="movieGenre${data.movieId}">${JSON.stringify(data.genre)}</span</div>
+                <br>
+                <button type="button" onclick="putRequestFunction(${data.movieId})">Save Changes</button>
+                <button type="button" onclick="reloadPage()">Refresh Movie List</button>
+            </div>`)
+        })
+    
+    })
+}
+
+function putRequestFunction(id){
+    
     let title=$("#my-title").val();
     let director=$("#my-director").val();
     let genre=$("#my-genre").val();
@@ -52,6 +72,7 @@ function putFunction(id){
         genre:genre,
     };
     console.log(title);
+
     $.ajax({
         url: `https://localhost:44325/api/movie/${id}`,
         dataType: 'json',
@@ -63,15 +84,18 @@ function putFunction(id){
             x.director = dict.director;
             x.title = dict.title;
             x.genre = dict.genre;                
-        },
-    
-        error: function( jqXhr, textStatus, errorThrown ){
-            console.log( errorThrown );
-        }
-    }
-    );
-    
+            },
+        
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+            }
+        });
+
+     
 }
+
+
+
 function deleteFunction(id){
     $.ajax({
         url: `https://localhost:44325/api/movie/${id}`,
