@@ -6530,7 +6530,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: #004085 !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
@@ -10147,4 +10147,14 @@ th {
 
 .card-title, .card-header {
   color: inherit;
+}
+
+
+
+
+
+/* Custom Styling by yours truly  */
+
+button {
+  color: red !important;
 }

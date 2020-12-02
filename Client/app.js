@@ -14,6 +14,8 @@
             data: JSON.stringify(dict),
             success: function( data, textStatus, jQxhr ){
                 $('#response pre').html( data );
+                getFunction();
+  
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log( errorThrown );
@@ -26,8 +28,25 @@
     $('#my-form').submit( processForm );
 })(jQuery);
 
+
+
 $(function(){ 
     $.get("https://localhost:44325/api/movie").then(function(data){
+        data.map(function(el){            
+            $("#movieList").append(`<div style="margin-left: 35%; margin-right: 35%;">
+            <div><span style="font-weight: 600;">Title:&nbsp;</span><span id="movieTitle${el.movieId}">${JSON.stringify(el.title)}</span></div>
+            <div><span style="font-weight: 600;">Director:&nbsp;</span><span id="movieDirector${el.movieId}">${JSON.stringify(el.director)}</span></div>
+            <div><span style="font-weight: 600;">Genre:&nbsp;</span><span id="movieGenre${el.movieId}">${JSON.stringify(el.genre)}</span></div>
+            <button type="button" onclick="putFunction(${el.movieId})"style="color: #eaebec;border-radius: 3px;background-image: linear-gradient(to top, darkblue 5%, #007bff 50%, transparent);font-weight: 800;">Edit</button>
+            <button type="button" onclick="deleteFunction(${el.movieId})"style="color: #eaebec; border-radius: 3px; background-image: linear-gradient(to top, darkblue 5%, #007bff 50%, transparent);font-weight: 800;">Delete</button>
+            </div><br>`)
+        })
+    })
+
+})
+
+function getFunction(){
+     $.get("https://localhost:44325/api/movie").then(function(data){
         data.map(function(el){            
             $("#movieList").append(`<div>
             <div>Title:&nbsp;<span id="movieTitle${el.movieId}">${JSON.stringify(el.title)}</span></div>
@@ -38,8 +57,8 @@ $(function(){
             </div><br>`)
         })
     })
+}
 
-})
 
 function putFunction(id){
     $(function(){ 
@@ -83,7 +102,8 @@ function putRequestFunction(id){
             var x = $("#movieList").find(x => x.id === this.id);
             x.director = dict.director;
             x.title = dict.title;
-            x.genre = dict.genre;                
+            x.genre = dict.genre;   
+            getFunction();     
             },
         
             error: function( jqXhr, textStatus, errorThrown ){
@@ -130,7 +150,8 @@ function deleteRequestFunction(id){
         data: id,
         success: function(id){
             var x = $("#movieList").find(x => x.id === this.id);
-            $("#movieList").remove(x => x.id === this.id);              
+            $("#movieList").remove(x => x.id === this.id);  
+            getFunction();               
         },
     
         error: function( jqXhr, textStatus, errorThrown ){
