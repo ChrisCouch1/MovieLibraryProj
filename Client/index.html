@@ -6,8 +6,13 @@
 </head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-image: linear-gradient(to right,#007bff, #b3d7ff, #007bff);">
-        <a class="navbar-brand" href="#">Movie Library</a>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-image: linear-gradient(to right, #5c1619  , #842024 50%, black );">
+
+
+        <a class="navbar-brand" href="#">
+          <img src="Images/movie-popcorn.jpg" width="50" height="50" alt="Animated Popcorn Logo">
+          Movie Library
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,16 +28,24 @@
             <input id="my-title" type="text" name="title" placeholder="Title" />
             <input id="my-director" type="text" name="director" placeholder="Director" />
             <input id="my-genre" type="text" name="genre" placeholder="Genre" />
-            <button type="submit">Add New Movie</button>
+            <button type="submit" class="btn btn-danger" style="background-image: linear-gradient(to top, transparent, #000000 50%, #99282D">Add New Movie</button>
         </form>
         </div>
       </nav>  
+      <div class="view" style="background-image: linear-gradient(to bottom, transparent,rgba(0,0,0,0.8)), url(Images/movie-theater.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+      
+        <div>
+          <h2 align="left" style="color: white;">Add your favorite movies to the library,</h2>
+          <h2 align="center" style="color: white;">Edit the movies you plan on watching,</h2>
+          <h2 align="right" style="color: white;">Delete the movies that you've seen...</h2>
+        </div>
 
-<div id="response">
-    <pre></pre>
-</div>
 
-<div id="movieList"></div>
+      <div id="response">
+          <pre></pre>
+      </div>
+
+      <div id="movieList"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -40,4 +53,4 @@
 <script type="text/javascript" src="./app.js"></script>
 
 </body>
-</html>
+</html> hei
